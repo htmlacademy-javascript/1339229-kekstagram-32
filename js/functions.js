@@ -47,14 +47,41 @@ function getNumber(string) {
       result += convertingString[i];
     }
   }
+  return result === '' ? NaN : Number(result);
 
-  if (result !== '') {
+  /*if (result !== '') {
     return parseInt(result, 10);
   }
-  return NaN;
+  return NaN;*/
 }
 
 getNumber('Я принесла 0.5 литра молока 12 мая');
 getNumber(-1);
 getNumber(254);
 getNumber('Я принесла кефир');
+
+
+//функция, которая принимает время начала и конца рабочего дня,
+//а также время старта и продолжительность встречи в минутах
+//и возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит.
+const countMinutes = function (time) {
+  const timeArray = time.split(':');
+  return timeArray[0] * 60 + parseInt(timeArray[1], 10);
+};
+
+const checkMeetingTime = function (startJobTime, endJobTime, startMeetingTime, duration) {
+  const startJobMinutes = countMinutes(startJobTime);
+  const endJobMinutes = countMinutes(endJobTime);
+  const startMeetingMinutes = countMinutes(startMeetingTime);
+  const endMeetingMinutes = startMeetingMinutes + duration;
+
+  return startJobMinutes <= startMeetingMinutes && endMeetingMinutes <= endJobMinutes;
+};
+
+checkMeetingTime('08:00', '17:30', '14:00', 90);
+
+/*console.log(checkMeetingTime('08:00', '17:30', '14:00', 90));
+console.log(checkMeetingTime('8:0', '10:0', '08:0', 120));
+console.log(checkMeetingTime('08:00', '14:30', '14:00', 90));
+console.log(checkMeetingTime('14:00', '17:30', '08:0', 90));
+console.log(checkMeetingTime('8:00', '17:30', '08:00', 900));*/
