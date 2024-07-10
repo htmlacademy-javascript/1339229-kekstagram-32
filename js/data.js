@@ -1,8 +1,10 @@
-import {getRandomInteger, getRandomArrayElement} from './util.js';
+import {getRandomInteger, getRandomArrayElement, generateRandomId} from './util.js';
 
 const PHOTO_COUNT = 25;
-const COMMENT_COUNT = 30;
-const AVATAR_COUNT = 6;
+const COMMENT_COUNT_MIN = 0;
+const COMMENT_COUNT_MAX = 30;
+const AVATAR_COUNT_MIN = 6;
+const AVATAR_COUNT_MAX = 6;
 const LIKES_COUNT_MIN = 15;
 const LIKES_COUNT_MAX = 200;
 
@@ -64,7 +66,6 @@ const COMMENTS_NAME = [
   'Лада'
 ];
 
-//генерирует случайные идентификаторы
 let randomId;
 const getRandomId = () => {
   if (ID.length > PHOTO_COUNT) {
@@ -80,19 +81,21 @@ const getRandomId = () => {
   return randomId;
 };
 
+const createMessage = () => Array.from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(COMMENTS_MESSAGE)).join(' ');
+
 const createComments = () => ({
-  id:  crypto.randomUUID(),
-  avatar:  `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
-  message: getRandomArrayElement(COMMENTS_MESSAGE),
+  id:  generateRandomId(),
+  avatar:  `img/avatar-${getRandomInteger(AVATAR_COUNT_MIN, AVATAR_COUNT_MAX)}.svg`,
+  message: createMessage(),
   name: getRandomArrayElement(COMMENTS_NAME),
 });
 
 const createPhotoDescription = () => ({
   id: getRandomId(),
   url:  `photos/${randomId}.jpg`,
-  discription: getRandomArrayElement(DESCRIPTION),
+  description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(LIKES_COUNT_MIN, LIKES_COUNT_MAX),
-  comments: Array.from({length: getRandomInteger(0, COMMENT_COUNT)}, createComments),
+  comments: Array.from({length: getRandomInteger(COMMENT_COUNT_MIN, COMMENT_COUNT_MAX)}, createComments),
 });
 
 //запишем создание массива в функцию, чтобы экспортировать функцию
