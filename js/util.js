@@ -6,7 +6,18 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+//генерирует случайные идентификаторы со сквозным нумерованием
+const createIDGenerator = () => {
+  let numberID = 0;
+
+  return () => {
+    numberID += 1;
+    return numberID;
+  };
+};
+const generateRandomId = createIDGenerator();
+
 //выбирает случайный элемента массива
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomInteger, getRandomArrayElement};
+export {getRandomInteger, getRandomArrayElement, generateRandomId};
