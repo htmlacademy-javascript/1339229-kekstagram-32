@@ -3,7 +3,7 @@ import {getRandomInteger, getRandomArrayElement, generateRandomId} from './util.
 const PHOTO_COUNT = 25;
 const COMMENT_COUNT_MIN = 0;
 const COMMENT_COUNT_MAX = 30;
-const AVATAR_COUNT_MIN = 6;
+const AVATAR_COUNT_MIN = 1;
 const AVATAR_COUNT_MAX = 6;
 const LIKES_COUNT_MIN = 15;
 const LIKES_COUNT_MAX = 200;
@@ -101,4 +101,4 @@ const createPhotoDescription = () => ({
 //запишем создание массива в функцию, чтобы экспортировать функцию
 const createPhotosDescription = () => Array.from({length: PHOTO_COUNT}, createPhotoDescription);
 
-export {createPhotosDescription};
+export {createPhotosDescription, AVATAR_COUNT_MIN, AVATAR_COUNT_MAX, PHOTO_COUNT};
