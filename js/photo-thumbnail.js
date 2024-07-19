@@ -1,10 +1,10 @@
-import {createPhotosDescription} from './data.js';
+import {createPhotosDescription, PHOTO_COUNT} from './data.js';
 import {renderFullPhoto} from './photo-full.js';
 
 const gallery = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const photoThumbnails = createPhotosDescription(25);
+const photoThumbnails = createPhotosDescription(PHOTO_COUNT);
 
 const renderGalleryThumbnails = () => {
   const galleryImageFragment = document.createDocumentFragment();
