@@ -1,4 +1,9 @@
 import { isEscapeKey } from './util.js';
+import {resetScale } from './scale.js';
+import {
+  init as initEffects,
+  reset as resetEffects
+} from './effect.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -12,11 +17,11 @@ const errorText = {
 };
 
 const uploadForm = document.querySelector('.img-upload__form');
-const closeFormButton = uploadForm.querySelector('.img-upload__cancel');
-const editForm = uploadForm.querySelector('.img-upload__overlay');
-const fileField = uploadForm.querySelector('.img-upload__input');
-const hashtagField = uploadForm.querySelector('.text__hashtags');
-const commentField = uploadForm.querySelector('.text__description');
+const closeFormButton = document.querySelector('.img-upload__cancel');
+const editForm = document.querySelector('.img-upload__overlay');
+const fileField = document.querySelector('.img-upload__input');
+const hashtagField = document.querySelector('.text__hashtags');
+const commentField = document.querySelector('.text__description');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -33,6 +38,8 @@ function openEditingImageForm() {
 function closeEditingImageForm() {
   uploadForm.reset();
   pristine.reset();//сбрасывает значения в форме редактирования
+  resetScale();
+  resetEffects();
   editForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -113,3 +120,4 @@ const onFormSubmit = (evt) => {
 fileField.addEventListener('change', onFieldInputChange);
 closeFormButton.addEventListener('click', onCloseFormButton);
 uploadForm.addEventListener('submit', onFormSubmit);
+initEffects();
