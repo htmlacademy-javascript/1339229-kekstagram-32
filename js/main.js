@@ -1,10 +1,23 @@
-//import {createPhotosDescription} from './data.js';
-import './photo-thumbnail.js';
-import './photo-full.js';
-import './commenst.js';
-import './form.js';
+import { getData, sendData } from './api.js';
+import { showAlert } from './util.js';
+import { renderGalleryThumbnails } from './photo-thumbnail.js';
+import { setOnUserFormSubmit, closeEditingImageForm } from './form.js';
+import { showUploadSuccessMessage, showUploadErrorMessage } from './responses.js';
 
-// eslint-disable-next-line no-console
-/*console.log(
-  createPhotosDescription()
-);*/
+setOnUserFormSubmit(async (data) => {
+  try {
+    await sendData(data);
+    closeEditingImageForm();
+    showUploadSuccessMessage();
+  } catch {
+    showUploadErrorMessage();
+  }
+});
+
+try {
+  const data = await getData();
+  renderGalleryThumbnails(data);
+} catch {
+  showAlert();
+}
+

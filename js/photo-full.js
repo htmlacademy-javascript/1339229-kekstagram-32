@@ -1,8 +1,8 @@
 import { isEscapeKey, getRandomInteger } from './util.js';
 import {AVATAR_COUNT_MIN, AVATAR_COUNT_MAX} from './data.js';
-import {photoFull} from './const.js';
 import { renderListComments, resetListComments } from './commenst.js';
 
+const photoFull = document.querySelector('.big-picture');
 const photoFullCloseButton = photoFull.querySelector('.big-picture__cancel');
 const socialPicture = photoFull.querySelector('.social__picture');
 const fullPhotoImage = photoFull.querySelector('.big-picture__img img');

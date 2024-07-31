@@ -1,3 +1,7 @@
+const ALERT_SHOW_TIME = 5000;
+
+const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
+
 //генерирует случайное число
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -22,4 +26,14 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomArrayElement, generateRandomId, isEscapeKey};
+//сообщение об ошибке при загрузке с сервера
+const showAlert = () => {
+  const dataErrorElement = dataErrorTemplate.cloneNode(true);
+  document.body.append(dataErrorElement);
+
+  setTimeout(() => {
+    dataErrorElement.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+export { getRandomInteger, getRandomArrayElement, generateRandomId, isEscapeKey, showAlert };
