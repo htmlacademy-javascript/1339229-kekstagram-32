@@ -1,8 +1,6 @@
-import {photoFull} from './const.js';
-
+const photoFull = document.querySelector('.big-picture');
 const commentsListTemplate = document.querySelector('#comment').content.querySelector('.social__comment');
 const commentsList = photoFull.querySelector('.social__comments');
-//const commentsCount = photoFull.querySelector('.social__comment-count');
 const commentsShowCount = photoFull.querySelector('.social__comment-shown-count');
 const commentsTotalCount = photoFull.querySelector('.social__comment-total-count');
 const commentsLoader = photoFull.querySelector('.comments-loader');

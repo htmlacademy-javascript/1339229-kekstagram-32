@@ -1,35 +1,37 @@
-import {createPhotosDescription, PHOTO_COUNT} from './data.js';
+//import {createPhotosDescription, PHOTO_COUNT} from './data.js';
 import {renderFullPhoto} from './photo-full.js';
 
-const gallery = document.querySelector('.pictures');
+const galleryContainer = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
+//const photoThumbnails = createPhotosDescription(PHOTO_COUNT);
 
-const photoThumbnails = createPhotosDescription(PHOTO_COUNT);
-
-const renderGalleryThumbnails = () => {
+const renderGalleryThumbnails = (thumbnails) => {
   const galleryImageFragment = document.createDocumentFragment();
 
-  photoThumbnails.forEach(({ id, url, description, likes, comments }) => {
+  thumbnails.forEach(({ id, url, description, likes, comments }) => {
     const galleryImage = photoThumbnailTemplate.cloneNode(true);
     galleryImage.dataset.id = id;
     galleryImage.querySelector('.picture__img').src = url;
     galleryImage.querySelector('.picture__img').alt = description;
     galleryImage.querySelector('.picture__likes').textContent = likes;
     galleryImage.querySelector('.picture__comments').textContent = comments.length;
+    galleryImage.addEventListener('click', () => {
+      renderFullPhoto({url, description, comments, likes});
+    });
     galleryImageFragment.appendChild(galleryImage);
   });
 
-  gallery.appendChild(galleryImageFragment);
+  galleryContainer.appendChild(galleryImageFragment);
 };
 
-gallery.addEventListener('click', (evt) => {
+/*galleryContainer.addEventListener('click', (evt) => {
   const thumbnail = evt.target.closest('[data-id]');
 
   if (!thumbnail) {
     return;
   }
 
-  const pictureData = photoThumbnails.find(
+  const pictureData = renderGalleryThumbnails.find(
     (item) => item.id === +thumbnail.dataset.id
   );
 
@@ -38,6 +40,10 @@ gallery.addEventListener('click', (evt) => {
   }
 
   renderFullPhoto(pictureData);
-});
+});*/
 
-renderGalleryThumbnails(photoThumbnails);
+//renderGalleryThumbnails(photoThumbnails);
+
+export { renderGalleryThumbnails };
+
+
