@@ -1,4 +1,3 @@
-//import {createPhotosDescription, PHOTO_COUNT} from './data.js';
 import {renderFullPhoto} from './photo-full.js';
 
 const galleryContainer = document.querySelector('.pictures');
@@ -20,29 +19,9 @@ const renderGalleryThumbnails = (thumbnails) => {
     });
     galleryImageFragment.appendChild(galleryImage);
   });
-
+  galleryContainer.querySelectorAll('.picture').forEach((picture) => picture.remove());
   galleryContainer.appendChild(galleryImageFragment);
 };
-
-/*galleryContainer.addEventListener('click', (evt) => {
-  const thumbnail = evt.target.closest('[data-id]');
-
-  if (!thumbnail) {
-    return;
-  }
-
-  const pictureData = renderGalleryThumbnails.find(
-    (item) => item.id === +thumbnail.dataset.id
-  );
-
-  if (!pictureData) {
-    return;
-  }
-
-  renderFullPhoto(pictureData);
-});*/
-
-//renderGalleryThumbnails(photoThumbnails);
 
 export { renderGalleryThumbnails };
 

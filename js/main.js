@@ -1,8 +1,9 @@
-import { getData, sendData } from './api.js';
-import { showAlert } from './util.js';
 import { renderGalleryThumbnails } from './photo-thumbnail.js';
+import { getData, sendData } from './api.js';
+import { showAlert, debounce } from './util.js';
 import { setOnUserFormSubmit, closeEditingImageForm } from './form.js';
 import { showUploadSuccessMessage, showUploadErrorMessage } from './responses.js';
+import { init as initFilter, getFilteredPictures } from './filters.js';
 
 setOnUserFormSubmit(async (data) => {
   try {
@@ -16,8 +17,9 @@ setOnUserFormSubmit(async (data) => {
 
 try {
   const data = await getData();
-  renderGalleryThumbnails(data);
+  const debounceRenderGallary = debounce(renderGalleryThumbnails);
+  initFilter(data, debounceRenderGallary);
+  renderGalleryThumbnails(getFilteredPictures());
 } catch {
   showAlert();
 }
-
