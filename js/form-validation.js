@@ -15,6 +15,7 @@ const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 const fileField = document.querySelector('.img-upload__input');
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
+const effectsPreviews = uploadForm.querySelectorAll('.effects__preview');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -68,7 +69,7 @@ pristine.addValidator(
   hashtagField,
   isValidTags,
   errorText.INVALID_HASHTAG,
-  1,//...потом правильный ли хэштег...
+  1,//...потом, правильный ли хэштег...
   true
 );
 
@@ -80,6 +81,9 @@ const uploadsPicture = () => {
   if (matches) {
     imgUploadPreview.src = URL.createObjectURL(file);//создает ссылку для фото с локального компьютера
     imgUploadPreview.style.width = '100%';
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url('${imgUploadPreview.src}')`;
+    });
   }
 };
 
