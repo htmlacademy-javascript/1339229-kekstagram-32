@@ -1,6 +1,8 @@
 import { isEscapeKey, getRandomInteger } from './util.js';
-import {AVATAR_COUNT_MIN, AVATAR_COUNT_MAX} from './data.js';
 import { renderListComments, resetListComments } from './commenst.js';
+
+const AVATAR_COUNT_MIN = 1;
+const AVATAR_COUNT_MAX = 6;
 
 const photoFull = document.querySelector('.big-picture');
 const photoFullCloseButton = photoFull.querySelector('.big-picture__cancel');
