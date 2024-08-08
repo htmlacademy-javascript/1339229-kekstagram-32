@@ -55,7 +55,7 @@ function onDocumentKeydown(evt) {
   }
 }
 
-const onCloseFormButton = () => {
+const onCloseFormButtonClick = () => {
   closeEditingImageForm();
 };
 
@@ -89,7 +89,7 @@ const setOnUserFormSubmit = (callback) => {
 };
 
 fileField.addEventListener('change', onFieldInputChange);
-closeFormButton.addEventListener('click', onCloseFormButton);
+closeFormButton.addEventListener('click', onCloseFormButtonClick);
 initEffects();
 
 export { setOnUserFormSubmit, closeEditingImageForm, resetEditingImageForm };

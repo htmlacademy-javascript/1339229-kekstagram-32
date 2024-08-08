@@ -3,9 +3,9 @@ const ALERT_SHOW_TIME = 5000;
 const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 
 //генерирует случайное число
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
+const getRandomInteger = (numberA, numberB) => {
+  const lower = Math.ceil(Math.min(numberA, numberB));
+  const upper = Math.floor(Math.max(numberA, numberB));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };

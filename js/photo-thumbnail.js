@@ -2,7 +2,6 @@ import {renderFullPhoto} from './photo-full.js';
 
 const galleryContainer = document.querySelector('.pictures');
 const photoThumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-//const photoThumbnails = createPhotosDescription(PHOTO_COUNT);
 
 const renderGalleryThumbnails = (thumbnails) => {
   const galleryImageFragment = document.createDocumentFragment();
